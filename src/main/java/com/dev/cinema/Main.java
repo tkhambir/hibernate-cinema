@@ -10,6 +10,8 @@ import com.dev.cinema.security.AuthenticationService;
 import com.dev.cinema.service.CinemaHallService;
 import com.dev.cinema.service.MovieService;
 import com.dev.cinema.service.MovieSessionService;
+import com.dev.cinema.service.ShoppingCartService;
+import com.dev.cinema.service.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -49,5 +51,15 @@ public class Main {
         user1.setPassword("password");
         System.out.println(authenticationService.register(user1.getEmail(), user1.getPassword()));
         System.out.println(authenticationService.login(user1.getEmail(), user1.getPassword()));
+
+        ShoppingCartService shoppingCartService
+                = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+        UserService userService
+                = (UserService) injector.getInstance(UserService.class);
+        User userFromDb = userService.findByEmail("user1@gmail.com").get();
+        shoppingCartService.addSession(movieSession1, userFromDb);
+        System.out.println("Cart with tickets: " + shoppingCartService.getByUser(userFromDb));
+        shoppingCartService.clear(shoppingCartService.getByUser(userFromDb));
+        System.out.println("Empty cart: " + shoppingCartService.getByUser(userFromDb));
     }
 }
