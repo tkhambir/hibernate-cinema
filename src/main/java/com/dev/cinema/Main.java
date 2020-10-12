@@ -5,6 +5,7 @@ import com.dev.cinema.lib.exceptions.AuthenticationException;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
 import com.dev.cinema.security.AuthenticationService;
 import com.dev.cinema.service.CinemaHallService;
@@ -58,8 +59,9 @@ public class Main {
                 = (UserService) injector.getInstance(UserService.class);
         User userFromDb = userService.findByEmail("user1@gmail.com").get();
         shoppingCartService.addSession(movieSession1, userFromDb);
-        System.out.println("Cart with tickets: " + shoppingCartService.getByUser(userFromDb));
-        shoppingCartService.clear(shoppingCartService.getByUser(userFromDb));
-        System.out.println("Empty cart: " + shoppingCartService.getByUser(userFromDb));
+        ShoppingCart shoppingCart = shoppingCartService.getByUser(userFromDb);
+        System.out.println("Cart with tickets: " + shoppingCart);
+        shoppingCartService.clear(shoppingCart);
+        System.out.println("Empty cart: " + shoppingCart);
     }
 }
