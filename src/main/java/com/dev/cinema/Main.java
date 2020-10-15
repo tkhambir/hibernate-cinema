@@ -14,15 +14,13 @@ import com.dev.cinema.service.MovieSessionService;
 import com.dev.cinema.service.OrderService;
 import com.dev.cinema.service.ShoppingCartService;
 import com.dev.cinema.service.UserService;
-import org.apache.log4j.Logger;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import org.apache.log4j.Logger;
 
 public class Main {
     private static Injector injector = Injector.getInstance("com.dev.cinema");
     private static final Logger logger = Logger.getLogger(Main.class);
-
 
     public static void main(String[] args) throws AuthenticationException {
         Movie movie = new Movie();
@@ -56,8 +54,10 @@ public class Main {
         User user1 = new User();
         user1.setEmail("user1@gmail.com");
         user1.setPassword("password");
-        logger.info("User1 registered: " + authenticationService.register(user1.getEmail(), user1.getPassword()));
-        logger.info("User1 logged in: " + authenticationService.login(user1.getEmail(), user1.getPassword()));
+        logger.info("User1 registered: " + authenticationService
+                .register(user1.getEmail(), user1.getPassword()));
+        logger.info("User1 logged in: " + authenticationService
+                .login(user1.getEmail(), user1.getPassword()));
 
         ShoppingCartService shoppingCartService
                 = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);

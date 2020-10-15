@@ -6,7 +6,6 @@ import com.dev.cinema.lib.exceptions.DataProcessingException;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.util.HibernateUtil;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

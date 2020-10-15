@@ -8,7 +8,6 @@ import com.dev.cinema.util.HibernateUtil;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

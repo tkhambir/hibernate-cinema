@@ -4,10 +4,8 @@ import com.dev.cinema.dao.UserDao;
 import com.dev.cinema.lib.Dao;
 import com.dev.cinema.lib.exceptions.DataProcessingException;
 import com.dev.cinema.model.User;
-import com.dev.cinema.security.AuthenticationServiceImpl;
 import com.dev.cinema.util.HibernateUtil;
 import java.util.Optional;
-
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
