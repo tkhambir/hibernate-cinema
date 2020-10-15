@@ -6,12 +6,15 @@ import com.dev.cinema.lib.exceptions.DataProcessingException;
 import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
 import com.dev.cinema.util.HibernateUtil;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 @Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
+    private static final Logger logger = Logger.getLogger(ShoppingCartDaoImpl.class);
+
     @Override
     public ShoppingCart add(ShoppingCart shoppingCart) {
         Transaction transaction = null;
@@ -21,6 +24,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             transaction = session.beginTransaction();
             session.save(shoppingCart);
             transaction.commit();
+            logger.info("Shopping cart: " + shoppingCart + "added to DB");
             return shoppingCart;
         } catch (Exception e) {
             if (transaction != null) {
@@ -59,6 +63,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
             transaction = session.beginTransaction();
             session.update(shoppingCart);
             transaction.commit();
+            logger.info("Shopping cart: " + shoppingCart + "updated in DB");
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

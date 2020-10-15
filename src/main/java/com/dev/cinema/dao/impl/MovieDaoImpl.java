@@ -6,12 +6,16 @@ import com.dev.cinema.lib.exceptions.DataProcessingException;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.util.HibernateUtil;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 @Dao
 public class MovieDaoImpl implements MovieDao {
+    private static final Logger logger = Logger.getLogger(MovieDaoImpl.class);
+
     @Override
     public Movie add(Movie movie) {
         Transaction transaction = null;
@@ -21,6 +25,7 @@ public class MovieDaoImpl implements MovieDao {
             transaction = session.beginTransaction();
             session.save(movie);
             transaction.commit();
+            logger.info("Movie: " + movie + "added to DB");
             return movie;
         } catch (Exception e) {
             if (transaction != null) {
