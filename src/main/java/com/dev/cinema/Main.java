@@ -54,10 +54,14 @@ public class Main {
         User user1 = new User();
         user1.setEmail("user1@gmail.com");
         user1.setPassword("password");
-        logger.info("User1 registered: " + authenticationService
+        logger.info("User registered: " + authenticationService
                 .register(user1.getEmail(), user1.getPassword()));
-        logger.info("User1 logged in: " + authenticationService
-                .login(user1.getEmail(), user1.getPassword()));
+        try {
+            authenticationService.login(user1.getEmail(), user1.getPassword());
+            logger.info("User logged in");
+        } catch (AuthenticationException e) {
+            logger.warn("User failed to log in. Exception: ", e);
+        }
 
         ShoppingCartService shoppingCartService
                 = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
