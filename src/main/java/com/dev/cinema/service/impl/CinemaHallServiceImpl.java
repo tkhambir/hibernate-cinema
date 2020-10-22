@@ -3,9 +3,8 @@ package com.dev.cinema.service.impl;
 import com.dev.cinema.dao.CinemaHallDao;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.service.CinemaHallService;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CinemaHallServiceImpl implements CinemaHallService {
