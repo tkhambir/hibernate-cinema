@@ -52,4 +52,11 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
             return getAllCinemaHalls.getResultList();
         }
     }
+
+    @Override
+    public CinemaHall get(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(CinemaHall.class, id);
+        }
+    }
 }
