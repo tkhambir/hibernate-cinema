@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OrderServiceImpl implements OrderService {
-    private OrderDao orderDao;
-    private ShoppingCartService shoppingCartService;
+    private final OrderDao orderDao;
+    private final ShoppingCartService shoppingCartService;
 
     public OrderServiceImpl(OrderDao orderDao, ShoppingCartService shoppingCartService) {
         this.orderDao = orderDao;
